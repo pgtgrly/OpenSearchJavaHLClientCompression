@@ -47,8 +47,8 @@ public class AmazonOpenSearchServiceSample {
         AWS4Signer signer = new AWS4Signer();
         signer.setServiceName(serviceName);
         signer.setRegionName(region);
-        //HttpRequestInterceptor interceptor = new AWSRequestSigningApacheInterceptor(serviceName, signer, credentialsProvider);
-        HttpRequestInterceptor interceptor = new AWSRequestSigningApacheInterceptor2(serviceName, signer, credentialsProvider);
+        HttpRequestInterceptor interceptor = new AWSRequestSigningApacheInterceptor(serviceName, signer, credentialsProvider);
+        //HttpRequestInterceptor interceptor = new AWSRequestSigningApacheInterceptor2(serviceName, signer, credentialsProvider);
         return new RestHighLevelClient(RestClient.builder(HttpHost.create(host)).setHttpClientConfigCallback(hacb -> hacb.addInterceptorLast(interceptor)).setCompressionEnabled(true));
     }
 }
